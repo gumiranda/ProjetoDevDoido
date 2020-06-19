@@ -3,7 +3,13 @@ import styled from 'styled-components/native';
 import {appColors} from '../../utils/appColors';
 
 export default styled(LinearGradient).attrs({
-  colors: [appColors.primary, appColors.black],
+  colors: [
+    appColors.fifth,
+    appColors.fourth,
+    appColors.third,
+    appColors.second,
+    appColors.primary,
+  ],
 })`
   flex: 1;
 `;

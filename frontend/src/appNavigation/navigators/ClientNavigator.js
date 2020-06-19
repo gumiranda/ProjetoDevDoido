@@ -90,7 +90,7 @@ const RootStack = createDrawerNavigator(
     navigationOptions: ({navigation}) => ({
       headerBackground: () => (
         <LinearGradient
-          colors={[darken(0.2, appColors.primary), appColors.primary]}
+          colors={[darken(0.2, appColors.fifth), appColors.fifth]}
           style={{flex: 1}}
         />
       ),

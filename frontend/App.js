@@ -21,7 +21,7 @@ const App = () => {
       <PersistGate persistor={appPersistor}>
         <StatusBar
           barStyle="light-content"
-          backgroundColor={darken(0.2, appColors.primary)}
+          backgroundColor={darken(0.2, appColors.fifth)}
         />
         <PaperProvider>
           <DevDoido />

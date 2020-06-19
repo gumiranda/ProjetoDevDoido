@@ -15,7 +15,7 @@ const userModel = new schema(
     phone: { type: String },
     senha: { type: String },
     ativo: { type: Boolean, required: true, default: true },
-    payDay: { type: Date, default: Date.now },
+    payDay: { type: Date },
     createdAt: { type: Date, default: Date.now },
   },
   { versionKey: false },
