@@ -65,7 +65,7 @@ export default function CardList({navigation}) {
       {new Date(profile.payDay).getTime() < new Date().getTime() ? (
         <SubmitButton
           textColor={appColors.white}
-          color={appColors.primary}
+          color={appColors.fifth}
           onPress={() => addCard()}>
           {cards && cards.length === 0
             ? 'Adicionar novo cartão'
