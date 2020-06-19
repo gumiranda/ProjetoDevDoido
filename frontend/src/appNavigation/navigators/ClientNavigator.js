@@ -13,6 +13,8 @@ import PaymentAddress from '../../screens/Payment/PaymentAddress/PaymentAddress'
 import PaymentCart from '../../screens/Payment/PaymentCart/PaymentCart';
 import CheckoutEasy from '../../screens/Payment/CheckoutEasy/CheckoutEasy';
 import CardList from '../../screens/Payment/CardList/CardList';
+import PostDetails from '../../screens/Feed/PostDetails/PostDetails';
+import ProfileDetails from '../../screens/Feed/ProfileDetails/ProfileDetails';
 import CompleteRegister from '../../screens/Payment/CompleteRegister/CompleteRegister';
 import {appColors} from '../../utils/appColors';
 import Background from '../../components/Background/Background';
@@ -31,6 +33,14 @@ const RootStack = createDrawerNavigator(
     Home: {
       screen: Home,
       navigationOptions: () => ({drawerLabel: 'Inicio'}),
+    },
+    PostDetails: {
+      screen: PostDetails,
+      navigationOptions: () => ({drawerLabel: 'Feed'}),
+    },
+    ProfileDetails: {
+      screen: ProfileDetails,
+      navigationOptions: () => ({drawerLabel: 'ProfileDetails'}),
     },
     Profile: {
       screen: Profile,
@@ -85,8 +95,8 @@ const RootStack = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
-    headerMode: 'screen',
+    initialRouteName: 'ProfileDetails',
+    headerMode: 'float',
     navigationOptions: ({navigation}) => ({
       headerBackground: () => (
         <LinearGradient
