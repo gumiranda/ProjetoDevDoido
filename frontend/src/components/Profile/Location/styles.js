@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   distance: {
     ...gs.smallText,
-    color: appColors.darkHl,
+    color: appColors.white,
     textTransform: 'uppercase',
   },
 });

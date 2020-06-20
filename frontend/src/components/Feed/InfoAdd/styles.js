@@ -19,10 +19,10 @@ export default StyleSheet.create({
     height: 48,
     borderRadius: 48 / 2,
     ...gs.center,
-    backgroundColor: appColors.primary,
+    backgroundColor: appColors.lightBg,
   },
   infoName: {
-    color: appColors.lightHl,
+    color: appColors.white,
     fontSize: 12,
     fontWeight: '600',
     marginTop: 6,

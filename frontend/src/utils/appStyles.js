@@ -6,11 +6,17 @@ export default StyleSheet.create({
     paddingVertical: 24,
     paddingHorizontal: 32,
     marginBottom: 8,
-    backgroundColor: appColors.extraLightBlue,
+    backgroundColor: appColors.fourth,
+  },
+  sectionContainerDark: {
+    paddingVertical: 24,
+    paddingHorizontal: 32,
+    marginBottom: 8,
+    backgroundColor: appColors.darkBg,
   },
   sectionTitle: {
     fontWeight: '700',
-    color: appColors.text,
+    color: appColors.white,
     fontSize: 15,
   },
   rowCenter: {
@@ -25,12 +31,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   divider: {
-    borderBottomColor: appColors.quatro,
+    borderBottomColor: appColors.secondClaro,
     borderBottomWidth: 1,
     marginVertical: 24,
   },
   title: {
-    color: appColors.text,
+    color: appColors.white,
     fontSize: 30,
   },
   subTitle: {

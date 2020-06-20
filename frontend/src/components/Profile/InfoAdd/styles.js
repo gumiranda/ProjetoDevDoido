@@ -8,11 +8,18 @@ export default StyleSheet.create({
     ...gs.rowBetween,
     marginHorizontal: 16,
     borderRadius: 16,
-    marginTop: -18,
+    paddingHorizontal: 10,
+    marginTop: -19,
   },
   statContainer: {
     ...gs.center,
     flex: 1,
+  },
+  statContainerDivider: {
+    ...gs.center,
+    flex: 1,
+    borderLeftWidth: 1,
+    borderColor: appColors.secondClaro,
   },
   statNumber: {
     fontSize: 20,
@@ -24,11 +31,12 @@ export default StyleSheet.create({
     fontWeight: '600',
     letterSpacing: 1,
     textTransform: 'uppercase',
-    color: appColors.lightHl,
+    color: appColors.white,
     marginTop: 6,
   },
   divider: {
     borderLeftWidth: 1,
-    borderColor: appColors.darkHl,
+    marginHorizontal: 0,
+    borderColor: appColors.secondClaro,
   },
 });

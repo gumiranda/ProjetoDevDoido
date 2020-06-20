@@ -2,6 +2,12 @@ import {darken} from 'polished';
 
 export const appColors = {
   thirdOutro: '#6800E5',
+  cor1: '#52575D',
+  cor2: '#AEB5BC',
+  cor3: '#CEDEF2',
+  cor4: '#52575D',
+  cor5: '#52575D',
+  cor6: '#52575D',
   primaryOutro: '#1D0040',
   fourthOutro: '#7400FF',
   secondOutro: '#3A007F',

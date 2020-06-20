@@ -7,17 +7,17 @@ const InfoAdd = () => {
     <View style={styles.container}>
       <View style={styles.statContainer}>
         <Text style={styles.statNumber}>12k</Text>
-        <Text style={styles.stat}>Followers</Text>
+        <Text style={styles.stat}>Seguidores</Text>
       </View>
 
-      <View style={[styles.statContainer, styles.divider]}>
+      <View style={styles.statContainerDivider}>
         <Text style={styles.statNumber}>1.7k</Text>
-        <Text style={styles.stat}>Following</Text>
+        <Text style={styles.stat}>Seguindo</Text>
       </View>
 
-      <View style={[styles.statContainer, styles.divider]}>
+      <View style={styles.statContainerDivider}>
         <Text style={styles.statNumber}>48</Text>
-        <Text style={styles.stat}>Trips</Text>
+        <Text style={styles.stat}>Posts</Text>
       </View>
     </View>
   );

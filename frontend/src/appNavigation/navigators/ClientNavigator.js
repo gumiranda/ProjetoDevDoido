@@ -15,6 +15,7 @@ import CheckoutEasy from '../../screens/Payment/CheckoutEasy/CheckoutEasy';
 import CardList from '../../screens/Payment/CardList/CardList';
 import PostDetails from '../../screens/Feed/PostDetails/PostDetails';
 import ProfileDetails from '../../screens/Feed/ProfileDetails/ProfileDetails';
+import MyProfile from '../../screens/Feed/MyProfile/MyProfile';
 import CompleteRegister from '../../screens/Payment/CompleteRegister/CompleteRegister';
 import {appColors} from '../../utils/appColors';
 import Background from '../../components/Background/Background';
@@ -37,6 +38,10 @@ const RootStack = createDrawerNavigator(
     PostDetails: {
       screen: PostDetails,
       navigationOptions: () => ({drawerLabel: 'Feed'}),
+    },
+    MyProfile: {
+      screen: MyProfile,
+      navigationOptions: () => ({drawerLabel: 'MyProfile'}),
     },
     ProfileDetails: {
       screen: ProfileDetails,
@@ -95,7 +100,7 @@ const RootStack = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'ProfileDetails',
+    initialRouteName: 'MyProfile',
     headerMode: 'float',
     navigationOptions: ({navigation}) => ({
       headerBackground: () => (

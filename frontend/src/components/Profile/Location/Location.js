@@ -19,7 +19,7 @@ const Location = () => {
           <Text style={styles.distance}>237km away</Text>
         </View>
       </View>
-      <Entypo name="chevron-right" size={24} color={appColors.darkHl} />
+      <Entypo name="chevron-right" size={24} color={appColors.white} />
     </View>
   );
 };

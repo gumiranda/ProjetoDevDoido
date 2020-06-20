@@ -8,7 +8,7 @@ export default StyleSheet.create({
   about: {
     fontSize: 15,
     fontWeight: '500',
-    color: appColors.darkHl,
+    color: appColors.white,
     marginTop: 8,
     lineHeight: 22,
   },
