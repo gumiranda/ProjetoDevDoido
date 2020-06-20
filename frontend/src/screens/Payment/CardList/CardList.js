@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ActivityIndicator} from 'react-native';
-import {format} from 'date-fns';
+import {format, isPast} from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import {Title, SubmitButton} from './styles';
 import Background from '../../../components/Background/Background';
@@ -17,6 +17,9 @@ export default function CardList({navigation}) {
   const dispatch = useDispatch();
   const cards = useSelector(state => state.creditcard.cards);
   const profile = useSelector(state => state.user.profile);
+  const expirate = useMemo(() => {
+    return isPast(new Date(profile.payDay).getTime());
+  });
   const dateFormatted = useMemo(() => {
     return format(
       new Date(new Date(profile.payDay)).getTime(),
@@ -34,10 +37,9 @@ export default function CardList({navigation}) {
     if (navigation.getParam('goToHome')) {
       navigation.navigate('Home');
     } else if (cards.length > 0) {
-      navigation.navigate('CardList');
       setLoading(false);
     } else if (profile.cpf && profile.phone) {
-      navigation.navigate('PaymentAddress');
+      navigation.navigate('Plans');
       setLoading(false);
     } else {
       navigation.navigate('CompleteRegister');
@@ -46,14 +48,21 @@ export default function CardList({navigation}) {
   }, [profile.cpf, profile.phone, navigation, cards.length]);
   const addCard = () => {
     if (profile.cpf && profile.phone) {
-      navigation.navigate('PaymentAddress');
+      navigation.push('Plans', {checkEasy: false});
     } else {
       navigation.navigate('CompleteRegister');
     }
   };
   const onPress = (_id, brand, cardNumber, name) => {
     if (new Date(profile.payDay).getTime() < new Date().getTime()) {
-      navigation.push('CheckoutEasy', {card_id: _id, brand, cardNumber, name});
+      navigation.push('Plans', {
+        checkEasy: true,
+        card_id: _id,
+        brand,
+        cardNumber,
+        name,
+      });
+      // navigation.push('CheckoutEasy', {card_id: _id, brand, cardNumber, name});
     }
   };
   return (
@@ -68,15 +77,21 @@ export default function CardList({navigation}) {
           color={appColors.fifth}
           onPress={() => addCard()}>
           {cards && cards.length === 0
-            ? 'Adicionar novo cartão'
-            : 'Pagar com outro cartão'}
+            ? 'Selecionar plano de assinatura'
+            : 'Mudar de plano'}
         </SubmitButton>
       ) : null}
 
       <CreditCardList onPress={onPress} cards={cards} />
-      <Title style={{marginHorizontal: 20, fontSize: 12}}>
-        Assinatura válida até {dateFormatted}
-      </Title>
+      {expirate ? (
+        <Title style={{marginHorizontal: 20, fontSize: 12}}>
+          Sua assinatura expirou {dateFormatted}
+        </Title>
+      ) : (
+        <Title style={{marginHorizontal: 20, fontSize: 12}}>
+          Assinatura válida até {dateFormatted}
+        </Title>
+      )}
     </Background>
   );
 }

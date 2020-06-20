@@ -40,10 +40,6 @@ const RootStack = createDrawerNavigator(
       screen: PostDetails,
       navigationOptions: () => ({drawerLabel: 'Feed'}),
     },
-    Plans: {
-      screen: Plans,
-      navigationOptions: () => ({drawerLabel: 'Plans'}),
-    },
     MyProfile: {
       screen: MyProfile,
       navigationOptions: () => ({drawerLabel: 'MyProfile'}),
@@ -62,6 +58,7 @@ const RootStack = createDrawerNavigator(
           CompleteRegister,
           RegPaymentAddress: {screen: PaymentAddress},
           RegPaymentCart: {screen: PaymentCart},
+          RegPlans: {screen: Plans},
         },
         {
           initialRouteName: 'CompleteRegister',
@@ -84,6 +81,7 @@ const RootStack = createDrawerNavigator(
           PaymentAddress,
           PaymentCart,
           CheckoutEasy,
+          Plans,
         },
         {
           initialRouteName: 'CardList',
@@ -105,7 +103,7 @@ const RootStack = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Plans',
+    initialRouteName: 'Home',
     headerMode: 'float',
     navigationOptions: ({navigation}) => ({
       headerBackground: () => (

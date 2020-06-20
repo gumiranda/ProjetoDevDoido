@@ -14,10 +14,11 @@ export default function CheckoutEasy({navigation}) {
   const profile = useSelector(state => state.user.profile);
   async function handleSubmit() {
     const card_id = navigation.getParam('card_id');
+    const value = navigation.getParam('value');
     try {
       if (count === 0) {
         setLoading(true);
-        const response = await api.post('transaction', {card_id});
+        const response = await api.post('transaction', {card_id, value});
         if (response.data) {
           const {cpf, phone} = profile;
           dispatch(completeProfileRequest({cpf, phone}));
@@ -51,7 +52,7 @@ export default function CheckoutEasy({navigation}) {
           number={navigation.getParam('cardNumber')}
         />
       </View>
-      <Title>Total: R$30</Title>
+      <Title>Total: R${navigation.getParam('value')}</Title>
       <SubmitButton loading={loading} onPress={() => handleSubmit()}>
         Confirmar pagamento
       </SubmitButton>

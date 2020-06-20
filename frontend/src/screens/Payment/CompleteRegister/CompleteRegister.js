@@ -68,7 +68,7 @@ export default function CompleteRegister({navigation}) {
             if (cards && cards.length > 0) {
               navigation.navigate('CardList');
             } else {
-              navigation.navigate('RegPaymentAddress', {goToAddress: true});
+              navigation.navigate('Plans', {checkEasy: false});
             }
           }
         }
@@ -139,7 +139,7 @@ export default function CompleteRegister({navigation}) {
               <SubmitButton
                 loading={loading}
                 onPress={() => onSubmit(values, isValid)}>
-                Completar cadastro
+                {profile.cpf && profile.phone ? 'Editar' : 'Completar cadastro'}
               </SubmitButton>
             </Form>
           )}

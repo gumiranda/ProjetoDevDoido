@@ -42,6 +42,8 @@ export default function PaymentCart({navigation}) {
       const city = navigation.getParam('city');
       const zipcode = navigation.getParam('zipcode').replace('-', '');
       const neighborhood = navigation.getParam('neighborhood');
+      const value = navigation.getParam('value');
+
       const {cpf, phone, email} = profile;
       const obj = {
         city,
@@ -56,6 +58,7 @@ export default function PaymentCart({navigation}) {
         cpf,
         phone,
         street_number,
+        value,
       };
       try {
         if (count === 0) {
@@ -109,7 +112,7 @@ export default function PaymentCart({navigation}) {
           getForm(form);
         }}
       />
-      <Title>Total: R$30</Title>
+      <Title>Total: R${navigation.getParam('value')}</Title>
       <SubmitButton loading={loading} onPress={() => handleSubmit()}>
         Confirmar pagamento
       </SubmitButton>

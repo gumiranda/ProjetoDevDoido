@@ -11,7 +11,7 @@ export default function Plans({navigation}) {
   const slideItems = [
     {
       id: 0,
-      servicePrice: '30',
+      servicePrice: 30,
       services: [
         {
           id: 0,
@@ -33,7 +33,7 @@ export default function Plans({navigation}) {
     },
     {
       id: 1,
-      servicePrice: '60',
+      servicePrice: 60,
       services: [
         {
           id: 0,
@@ -55,7 +55,7 @@ export default function Plans({navigation}) {
     },
     {
       id: 2,
-      servicePrice: '90',
+      servicePrice: 90,
       services: [
         {
           id: 0,
@@ -76,16 +76,37 @@ export default function Plans({navigation}) {
       ],
     },
   ];
+  const onPress = servicePrice => {
+    if (navigation.getParam('checkEasy') === true) {
+      const card_id = navigation.getParam('card_id');
+      const brand = navigation.getParam('brand');
+      const cardNumber = navigation.getParam('cardNumber');
+      const name = navigation.getParam('name');
 
-  const _renderItem = ({item, index}) => {
+      navigation.push('CheckoutEasy', {
+        card_id,
+        brand,
+        cardNumber,
+        name,
+        value: servicePrice,
+      });
+    } else {
+      navigation.push('PaymentAddress', {
+        value: servicePrice,
+      });
+    }
+  };
+  const renderItem = ({item}) => {
     return (
       <SlideItem
         key={item.id}
+        onPress={onPress}
         services={item.services}
         servicePrice={item.servicePrice}
       />
     );
   };
+
   const itemWidth = appMetrics.DEVICE_WIDTH - 85;
 
   return (
@@ -95,7 +116,7 @@ export default function Plans({navigation}) {
         sliderWidth={appMetrics.DEVICE_WIDTH}
         itemWidth={itemWidth}
         data={slideItems}
-        renderItem={_renderItem}
+        renderItem={renderItem}
         currentIndex={2}
       />
     </Background>

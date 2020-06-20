@@ -73,6 +73,8 @@ export default function PaymentAddress({navigation}) {
               'Preencha os valores corretamente para prosseguir',
             );
           } else {
+            const value = navigation.getParam('value');
+
             navigation.navigate('PaymentCart', {
               zipcode,
               state,
@@ -81,6 +83,7 @@ export default function PaymentAddress({navigation}) {
               neighborhood,
               street_number,
               complemento,
+              value,
             });
           }
         } else {
