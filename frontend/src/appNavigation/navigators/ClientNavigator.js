@@ -10,6 +10,7 @@ import {signOut} from '../../appStore/appModules/auth/actions';
 import Profile from '../../screens/Profile/Profile';
 import Home from '../../screens/Home/Home';
 import PaymentAddress from '../../screens/Payment/PaymentAddress/PaymentAddress';
+import Plans from '../../screens/Payment/Plans/Plans';
 import PaymentCart from '../../screens/Payment/PaymentCart/PaymentCart';
 import CheckoutEasy from '../../screens/Payment/CheckoutEasy/CheckoutEasy';
 import CardList from '../../screens/Payment/CardList/CardList';
@@ -38,6 +39,10 @@ const RootStack = createDrawerNavigator(
     PostDetails: {
       screen: PostDetails,
       navigationOptions: () => ({drawerLabel: 'Feed'}),
+    },
+    Plans: {
+      screen: Plans,
+      navigationOptions: () => ({drawerLabel: 'Plans'}),
     },
     MyProfile: {
       screen: MyProfile,
@@ -100,7 +105,7 @@ const RootStack = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'MyProfile',
+    initialRouteName: 'Plans',
     headerMode: 'float',
     navigationOptions: ({navigation}) => ({
       headerBackground: () => (
