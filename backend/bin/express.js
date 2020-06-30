@@ -4,18 +4,24 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
 const variables = require('./configuration/variables');
+
+// ROTAS
 const userRouter = require('../routes/user-router');
 const cardRouter = require('../routes/card-router');
 const transactionRouter = require('../routes/transaction-router');
+
+// EXPRESS BRUTE FORCE
+const ExpressBrute = require('express-brute');
+const MongooseStore = require('express-brute-mongoose');
+const BruteForceSchema = require('express-brute-mongoose/dist/schema');
 
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 // eslint-disable-next-line no-unused-vars
-let connectedUsers = {};
+const connectedUsers = {};
 
 app.use((req, res, next) => {
   req.io = io;
@@ -42,8 +48,14 @@ mongoose.connect(variables.Database.connection, {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
+const model = mongoose.model(
+  'bruteforce',
+  new mongoose.Schema(BruteForceSchema),
+);
+const store = new MongooseStore(model);
+const bruteForce = new ExpressBrute(store);
 
-app.use('/api/user', userRouter);
+app.use('/api/user', bruteForce.prevent, userRouter);
 app.use('/api/transaction', transactionRouter);
 app.use('/api/card', cardRouter);
 
@@ -53,10 +65,10 @@ server.listen(port, () => {
   io.on('connection', (socket) => {
     const { user_id } = socket.handshake.query;
     connectedUsers[user_id] = socket.id;
-    //console.log('teste', connectedUsers, connectedUsers[user_id]);
+    // console.log('teste', connectedUsers, connectedUsers[user_id]);
   });
 
-  console.info('Servidor rodando na porta' + port);
+  console.info(`Servidor rodando na porta${port}`);
 });
 
 module.exports = server;
