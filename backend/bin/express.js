@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const variables = require('./configuration/variables');
-
+const helmet = require('helmet');
 // ROTAS
 const userRouter = require('../routes/user-router');
 const cardRouter = require('../routes/card-router');
@@ -19,6 +19,9 @@ const BruteForceSchema = require('express-brute-mongoose/dist/schema');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+
+const rateLimit = require('express-rate-limit');
+const rateLimitStore = require('@lykmapipo/rate-limit-mongoose');
 
 // eslint-disable-next-line no-unused-vars
 const connectedUsers = {};
@@ -42,18 +45,26 @@ app.use(function (req, res, next) {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(helmet());
 mongoose.connect(variables.Database.connection, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
 });
+
+//brute force
 const model = mongoose.model(
   'bruteforce',
   new mongoose.Schema(BruteForceSchema),
 );
 const store = new MongooseStore(model);
 const bruteForce = new ExpressBrute(store);
+
+//rate limiter
+const windowMs = 15 * 60 * 1000;
+const storeLimiter = rateLimitStore({ windowMs });
+const limiter = rateLimit({ storeLimiter, windowMs, max: 100 });
+app.use(limiter);
 
 app.use('/api/user', bruteForce.prevent, userRouter);
 app.use('/api/transaction', transactionRouter);
